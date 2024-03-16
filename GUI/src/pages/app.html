@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="../../icons/manifest.webmanifest">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../../icons/favicon.ico">
+    <title>VerusHub Messenger</title>
+</head>
+<body>
+    <div class="noise"></div>
+    <audio autoplay style="display: none;" src="../audio/static_audio_startup.mp3"></audio>
+    <nav>
+        <a href="#" id="rooms-link">Rooms</a>
+        <a href="#" id="news-link">News</a>
+        <a href="#" id="portfolio-link">Portfolio</a>
+        <a href="#" id="valu-link">ValuVerse</a>
+        <a href="#" id="auction-link">Auction</a>
+        <a href="#" id="settings-link">Settings</a>
+        <a href="#" id="support-link">Support</a>
+        <div class="animation start-rooms"></div>
+    </nav>
+    
+    <section id="rooms-section" class="active-section">
+        <div class="rightside">
+
+        </div>
+        <div class="leftside">
+
+        </div>
+    </section>
+    
+    <section id="news-section">
+        <h1>News</h1>
+    </section>
+    
+    <section id="portfolio-section">
+        <h1>Portfolio</h1>
+    </section>
+
+    <section id="valu-section">
+       <h1 class="soontm">
+           Coming Soon
+       </h1> 
+    </section>
+
+    <section id="auction-section">
+        <h1 class="soontm">
+            Coming Soon
+        </h1>
+    </section>
+
+    <section id="settings-section">
+        <h1>Settings</h1>
+    </section>
+
+    <section id="support-section">
+        <!-- <div class="basebox" id="basebox">
+            <div class="chatbox"></div>
+            <input type="text" class="supportinput" placeholder="Type a message" id="supportinput">
+        </div> -->
+        <div id="conversation"></div>
+        <div class="card-footer text-muted">
+            <div class="input-group">
+                <!-- <input id="write-message" type="text" class="form-control" placeholder="Write a message and send..."> -->
+                <input type="text" class="supportinput" placeholder="Type a message" id="write-message">
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const navLinks = document.querySelectorAll("nav a");
+        const sections = document.querySelectorAll("section");
+
+        navLinks.forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                navLinks.forEach(function(link) {
+                    link.classList.remove("active");
+                });
+                this.classList.add("active");
+                sections.forEach(function(section) {
+                    section.classList.remove("active-section");
+                });
+                const sectionId = `${this.id.split("-")[0]}-section`;
+                document.getElementById(sectionId).classList.add("active-section");
+                });
+            });
+        });
+    </script>
+    <script src="../render.js" defer></script>
+</body>
+</html>

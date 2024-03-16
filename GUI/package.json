@@ -1,0 +1,37 @@
+{
+  "name": "verushub",
+  "productName": "VerusHub (VH)",
+  "version": "1.0.0",
+  "description": "A fully private and secure blockchain based messenger, that uses blockchain based technology to keep your data safe and secure all the time.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.3.0",
+    "@electron-forge/maker-deb": "^7.3.0",
+    "@electron-forge/maker-rpm": "^7.3.0",
+    "@electron-forge/maker-squirrel": "^7.3.0",
+    "@electron-forge/maker-zip": "^7.3.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.3.0",
+    "@electron-forge/plugin-fuses": "^7.3.0",
+    "@electron/fuses": "^1.7.0",
+    "electron": "29.1.0"
+  },
+  "keywords": [],
+  "author": "shreyasbrilliant",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "chalk": "^5.3.0",
+    "chalk-animation": "^2.0.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "inquirer": "^9.2.15",
+    "nanospinner": "^1.1.0",
+    "readline-sync": "^1.4.10"
+  }
+}

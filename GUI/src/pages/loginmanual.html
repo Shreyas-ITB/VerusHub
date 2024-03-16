@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="../../icons/manifest.webmanifest">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../../icons/favicon.ico">
+    <title>VerusHub Messenger</title>
+</head>
+<body>
+    <div class="noise"></div>
+    <button class="backbutton" onclick="location.href='intro.html'">Go Back</button>
+    <form onsubmit="return false">
+        <img width="110px" height="110px" src="../../icons/verushub_bgr.png">
+        <div class="user-box">
+            <input type="text" required id="username" spellcheck="false">
+            <label for="">Choose a unique username</label>
+        </div>
+        <div class="user-box">
+            <input type="text" required id="address" spellcheck="false">
+            <label for="">Your VerusCoin address</label>
+        </div>
+        <button class="loginbutton" onclick="handleSubmit()">Get Started</button>
+    </form>
+
+    <script src="../render.js"></script>
+    <script>
+        const { ipcRenderer } = require('electron');
+    
+        async function handleSubmit() {
+            const username = document.getElementById('username').value;
+            const address = document.getElementById('address').value;
+    
+            // Call the main process function to encrypt and save the data
+            ipcRenderer.invoke('encryptAndSaveData', username, address)
+                .then((response) => {
+                    return true;
+                })
+                .catch((error) => {
+                    return false;
+                });
+        }
+    </script>
+</body>
+</html>

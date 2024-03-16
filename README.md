@@ -9,4 +9,7 @@ A fully private and secure blockchain based messenger that uses various blockcha
 - Run the Broker in the ``CommunicationBroker`` directory by executing ``node /CommunicationBroker/broker.js``
 - Run the VerusHub CLI by executing ``npm start``
 
+## Donations
+VerusID: VerusHub@
+
 # WIP (Work in Progress)

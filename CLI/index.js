@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 import axios from 'axios';
 import CoinGecko from "coingecko-api";
 import io from 'socket.io-client';
-
+import repl from 'repl';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -107,39 +107,36 @@ function getRandomSentence() {
 }
 
 function showChat() {
-    inquirer.prompt([
-        {
-            name: 'question',
-            type: 'input',
-            message: 'You:',
-        }
-    ]).then(answer => {
-        if (answer.question.toLowerCase() === 'back') {
-            console.clear();
-            socket.on('disconnect', function() {
-                socket.emit('disconnect')
-            });
-            showMainMenu();
-        }
-        else if (answer.question.toLowerCase() === 'exit') {
-            console.clear();
-            socket.on('disconnect', function() {
-                socket.emit('disconnect')
-            });
-            console.log(chalk.red('Exiting VerusHub... Hope to see you again!'));
-            process.exit();
-        } else {
-            socket.on('connect', () => {
-                username = getdata()['usrnme'];
-            })  
-            socket.on('message', (data) => {
-                const { cmd, username } = data
-                console.log(chalk.green(username) + ': ' + chalk.blue(cmd.split('\n')[0]));
-            })
-            socket.send({ cmd: answer.question, username })
-            showChat();
-        }
+    var username = getdata()['usrnme'];
+    socket.on('disconnect', function() {
+        socket.emit('disconnect')
     });
+
+    socket.on('connect', () => {
+        username = getdata()['usrnme'];
+    })
+
+    socket.on('message', (data) => {
+        const { cmd, username } = data
+        console.log(chalk.green(username + ': ' + cmd.split('\n')[0]));
+    })
+
+    repl.start({ 
+        prompt: '',
+        eval: (cmd) => {
+            if (cmd.trim().toLowerCase() === 'back') {
+                console.clear();
+                showMainMenu();
+            }
+            else if (cmd.trim().toLowerCase() === 'exit') {
+                console.clear();
+                console.log(chalk.red('Exiting VerusHub... Hope to see you again!'));
+                process.exit();
+            } else {
+                socket.send({ cmd, username });
+            }
+        }
+    })
 
 }
 
